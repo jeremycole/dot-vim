@@ -16,8 +16,6 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
-execute pathogen#infect()
-
 set listchars=tab:▸\ ,trail:░
 ",eol:¬
 set list
@@ -26,4 +24,6 @@ set tabstop=8
 set shiftwidth=2
 set expandtab
 
-filetype indent on
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
