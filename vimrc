@@ -2,7 +2,9 @@ set viminfo='100,\"100,:200,%,n~/.viminfo
 set number
 set gfn=Monospace\ 13
 
+map q :q<CR>
 map m :TlistToggle<CR>
+map f :execute "grep -rn --include=*.{c,cc,h,ic,i,rb} --exclude=tags --exclude-dir=storage/xtradb " . expand("<cword>") . " *" <Bar> cw<CR><CR>
 
 function! ResCur()
   if line("'\"") <= line("$")
@@ -17,7 +19,6 @@ augroup resCur
 augroup END
 
 set listchars=tab:▸\ ,trail:░
-",eol:¬
 set list
 
 set tabstop=8
