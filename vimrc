@@ -21,9 +21,28 @@ augroup END
 set listchars=tab:▸\ ,trail:░
 set list
 
+set pastetoggle=<C-e>
 set tabstop=8
 set shiftwidth=2
 set expandtab
+set autoindent
+set smartindent
+
+"Check for InnoDB files.
+autocmd FileType c,cpp call CheckForInnodbConfiguration()
+
+"Setup InnoDB coding style
+function! CheckForInnodbConfiguration()
+  if expand('%:p') =~ 'innobase'
+    setlocal tabstop=8
+    setlocal softtabstop=8
+    setlocal shiftwidth=8
+    setlocal textwidth=80
+    setlocal noexpandtab
+    syn keyword cOperator likely unlikely
+    syn keyword cType ulint ullint
+  endif
+endfunction
 
 execute pathogen#infect()
 syntax on
