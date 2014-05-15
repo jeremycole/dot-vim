@@ -2,10 +2,17 @@ set viminfo='100,\"100,:200,%,n~/.viminfo
 set number
 set gfn=Monospace\ 13
 
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Show_One_File = 1
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_WinWidth = 40
+
 map q :q<CR>
 map m :TlistToggle<CR>
-map f :execute "grep -rn --include=*.{c,cc,h,ic,i,rb} --exclude=tags --exclude-dir=storage/xtradb " . expand("<cword>") . " *" <Bar> cw<CR><CR>
-
+map f :execute "grep -rn --include=*.{c,cc,h,ic,i,rb} --exclude=tags --exclude-dir=build --exclude-dir=storage/xtradb " . expand("<cword>") . " *" <Bar> cw<CR><CR>
+map <Space> <PageDown>
 function! ResCur()
   if line("'\"") <= line("$")
     normal! g`"
@@ -39,10 +46,10 @@ function! CheckForInnodbConfiguration()
     setlocal shiftwidth=8
     setlocal textwidth=80
     setlocal noexpandtab
-    syn keyword cOperator likely unlikely
-    syn keyword cType ulint ullint
   endif
 endfunction
+
+set tags+=~/.system-tags
 
 execute pathogen#infect()
 syntax on
